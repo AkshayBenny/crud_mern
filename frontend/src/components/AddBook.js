@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function AddBook() {
+  const history = useNavigate();
   const [inputs, setInputs] = useState({
     name: '',
     author: '',
     description: '',
     price: '',
-
     image: '',
   });
   const [checked, setChecked] = useState(false);
@@ -22,7 +23,7 @@ function AddBook() {
         available: Boolean(checked),
         image: String(inputs.image),
       })
-      .then((res) => console.log(res));
+      .then((res) => res.data);
   };
 
   const handleChange = (e) => {
@@ -34,7 +35,7 @@ function AddBook() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    sendRequest().then()
+    sendRequest().then(() => history('/books'));
   };
   return (
     <form
