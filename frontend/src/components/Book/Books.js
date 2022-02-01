@@ -14,7 +14,7 @@ function Books() {
     fetchHandler().then((data) => setBooks(data.books));
   }, []);
   return (
-    <div className='px-5 md:px-20'>
+    <div className='px-5 pt-9 md:px-20'>
       <h2 className='text-2xl font-extrabold text-gray-900'>Browse Books</h2>
 
       <div className='mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0'>
