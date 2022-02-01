@@ -1,5 +1,5 @@
 const Book = require('../model/Book');
-
+//get book or books, add book, update book etc functions will be handled by this controller
 const getAllBooks = async (req, res, next) => {
   let books;
   try {
@@ -15,5 +15,27 @@ const getAllBooks = async (req, res, next) => {
   }
 };
 
+const addBook = async (req, res, next) => {
+  const { name, author, description, price, available } = req.body;
+  let book;
+  try {
+    book = new Book({
+      name,
+      author,
+      description,
+      price,
+      available,
+    });
+    await book.save(); //>>>>>>>>>This line will save the book data to the database<<<<<<<<
+  } catch (err) {
+    console.log(err);
+  }
 
-exports.getAllBooks = getAllBooks
+  if (!book) {
+    return res.status(500).json({ message: 'Unable to add new book' });
+  }
+  return res.status(201).json({ book });
+};
+
+exports.getAllBooks = getAllBooks;
+exports.addBook = addBook;

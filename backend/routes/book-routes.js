@@ -6,4 +6,6 @@ const booksController = require('../controllers/books-controller');
 //This route will provide all the books data
 router.get('/', booksController.getAllBooks);
 
+router.post('/', booksController.addBook);
+
 module.exports = router;
