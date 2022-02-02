@@ -1,23 +1,19 @@
-// mongodb password: KMkO6Ciy3CFgKrBa
-// mongodb user: admin
-
 const express = require('express');
 const mongoose = require('mongoose');
-const router = require('./routes/book-routes')
-const cors= require('cors');
+const router = require('./routes/book-routes');
+const cors = require('cors');
 const app = express();
 
 //Middlewares
-app.use(express.json())
-app.use(cors())
-app.use('/books', router) //localhost:5000/books
+app.use(express.json());
+app.use(cors());
+app.use('/books', router); //localhost:5000/books
 
 //db connection
 mongoose
   .connect(
-    'mongodb+srv://admin:KMkO6Ciy3CFgKrBa@cluster0.rsqjb.mongodb.net/bookStore?retryWrites=true&w=majority'
+    '' //add mongodb url here
   )
   .then(() => console.log('Connected to database'))
   .then(() => app.listen(5000))
   .catch((err) => console.log('An error occured>>>>>>>>>>', err));
- 
